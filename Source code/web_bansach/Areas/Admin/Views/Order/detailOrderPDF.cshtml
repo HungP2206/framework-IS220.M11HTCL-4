@@ -1,0 +1,91 @@
+﻿
+@{
+    Layout = "~/Areas/Admin/Views/Shared/pdf_Layout.cshtml";
+
+}
+
+@model List<object>
+
+
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="section-block" id="basicform">
+        <h3 class="section-title">ĐƠN HÀNG</h3>
+        <!-- <p>Use custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.</p> -->
+    </div>
+
+    <div class="cardall">
+        <div class="ecommerce-widget">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table border-1">
+                                    <thead class="bg-light">
+                                        <tr class="border-1">
+                                            <th class="border-1">ID</th>
+                                            <th class="border-1">Tên KH</th>
+                                            <th class="border-1">Tên sách</th>
+                                            <th class="border-1">Địa chỉ nhận hàng</th>
+                                            <th class="border-1">Đơn giá (chưa áp KM) (VNĐ)</th>
+                                            <th class="border-1">Số lượng</th>
+                                            <th class="border-1">Khuyến mãi (%)</th>
+                                            <th class="border-0">Đơn giá (đã áp KM) (VNĐ)</th>
+                                            <th class="border-0">Tổng (VNĐ)</th>
+                                            @*<th class="border-0">Trạng thái </th>*@
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr class="border-1">
+                                                <td class="border-1"> @item.GetType().GetProperty("OrderID").GetValue(item, null)</td>
+                                                <td class="border-1"> @item.GetType().GetProperty("CustomerName").GetValue(item, null)</td>
+                                                <td class="border-1"> @item.GetType().GetProperty("Address").GetValue(item, null)</td>
+                                                <td class="border-1"> @item.GetType().GetProperty("BookName").GetValue(item, null)</td>
+                                                <td class="border-1"> @item.GetType().GetProperty("PriceUnit").GetValue(item, null)</td>
+                                                <td class="border-1"> @item.GetType().GetProperty("Quantity").GetValue(item, null)</td>
+                                                <td class="border-1"> @item.GetType().GetProperty("Sale").GetValue(item, null)  </td>
+                                                <td class="border-1"> @item.GetType().GetProperty("PriceSale").GetValue(item, null)  </td>
+                                                <td class="border-1 item"> @item.GetType().GetProperty("Totalbyquantity").GetValue(item, null) </td>
+
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                    </tr>
+                                    </thead>
+
+                                </table>
+
+
+                            </div>
+                            <div style="font-weight:bold; font-size:20px">
+                                TỔNG HOÁ ĐƠN: <p id="total" style="font-weight:bold; font-size:20px"> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+
+            var sum = 0;
+            $(".item").each(function () {
+
+                sum += (parseFloat($(this).text()));
+            });
+            var total = sum.total
+            $("#total").html(sum + " VNĐ");
+
+
+
+
+        })
+
+    </script>
+}

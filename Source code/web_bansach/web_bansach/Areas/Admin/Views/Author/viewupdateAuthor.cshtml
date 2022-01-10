@@ -1,0 +1,64 @@
+﻿@model web_bansach.Areas.Admin.Models.AuthorModel
+
+
+
+
+
+
+<div class="card-body">
+    <form action="updateAuthor" method="post">
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Mã tác giả</label>
+            <input id="inputText3" type="text" class="form-control" readonly="readonly" value=@Model.AuthorID name="AuthorID">
+        </div>
+
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Tên nhân viên</label>
+            <input id="inputText3" type="text" class="form-control" name="AuthorName" value="@Model.AuthorName">
+        </div>
+
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Email</label>
+            <input id="inputText3" type="email" class="form-control" value=@Model.Email name="Email" required>
+        </div>
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Phone</label>
+            <input id="inputText3" type="text" class="form-control" value=@Model.Phone name="Phone" required>
+        </div>
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Giới tính</label>
+            <select class="custom-select" name="Gender">
+                @if (@Model.Gender == 0)
+                {
+                    <option selected value="@Model.Gender">Nam</option>
+                    <option value="1">Nữ</option>
+                }
+                else
+                {
+                    <option selected value="@Model.Gender">Nữ</option>
+                    <option value="0">Nam</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Trạng thái</label>
+            <select class="custom-select" name="AuthorStatus">
+                @if (@Model.AuthorStatus == 0)
+                {
+                <option selected value="@Model.AuthorStatus">Đang kinh doanh</option>
+                    <option value="1">Ngừng kinh doanh</option>
+                }
+                else
+                {
+            <option selected value="@Model.AuthorStatus">Ngừng kinh doanh</option>
+                    <option value="0">Đang kinh doanh</option>
+                }
+            </select>
+        </div>
+      
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+            <button class="btn btn-primary" type="submit">Cập nhật tác giả</button>
+        </div>
+    </form>
+
+</div>

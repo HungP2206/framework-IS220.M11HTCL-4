@@ -1,0 +1,131 @@
+﻿
+@model List<Object>
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="section-block" id="basicform">
+                <h3 class="section-title">THÊM SÁCH</h3>
+                <!-- <p>Use custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.</p> -->
+            </div>
+            <div class="card">
+                @*<h5 class="card-header">Danh mục sách</h5>*@
+                <div class="card-body">
+                    <form method="post" action="updateBook">
+
+                        <div class="form-group">
+                            <label for="inputText3" class="col-form-label">Mã sách</label>
+                            <input id="inputText3" type="text" class="form-control" readonly="readonly" value=@item.GetType().GetProperty("BookID").GetValue(item, null) name="BookID">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputText3" class="col-form-label">Tên sách</label>
+                            <input id="inputText3" type="text" class="form-control" name="BookName" value="@item.GetType().GetProperty("BookName").GetValue(item, null)">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputText3" class="col-form-label">Tên tác giả</label>
+                            <select class="custom-select form-control" name="AuthorID" required value="123"
+                                    asp-items="@(new SelectList(ViewBag.ListofAuthor,"AuthorID", "AuthorName"))">
+                                <option value="@item.GetType().GetProperty("AuthorID").GetValue(item, null)" selected>@item.GetType().GetProperty("AuthorName").GetValue(item, null)</option>
+                            </select>
+                            <p class="note">(Nếu chưa có tác giả trong danh mục vui lòng thêm tác giả)</p>
+                            <a href="~/admin/Author/addAuthor" class="btn-outline-light btn btn-primary">Thêm tác giả</a>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label">Tên nhà cung cấp</label>
+                            <select class="custom-select form-control" name="ProducerID" required value=""
+                                    asp-items="@(new SelectList(ViewBag.ListofProducer,"ProducerID", "ProducerName"))">
+                                <option value="@item.GetType().GetProperty("ProducerID").GetValue(item, null)" selected>@item.GetType().GetProperty("ProducerName").GetValue(item, null)</option>
+
+                            </select>
+                            <p class="note">(Nếu chưa có nhà cung cấp trong danh mục vui lòng thêm nhà cung cấp)</p>
+                            <a href="~/admin/Producer/addProducer" class="btn-outline-light btn btn-primary">Thêm nhà cung cấp</a>
+                        </div>
+
+                        <div class="form-group">
+                            <div>
+                                <label>Tên thể loại sách</label>
+                                <select class="custom-select form-control" name="CategoryID" required value=""
+                                        asp-items="@(new SelectList(ViewBag.ListofCategory,"CategoryID", "CategoryName"))">
+                                    <option value="@item.GetType().GetProperty("CategoryID").GetValue(item, null)" selected>@item.GetType().GetProperty("CategoryName").GetValue(item, null)</option>
+                                </select>
+                            </div>
+                            <p class="note">(Nếu chưa có loại sách trong danh mục vui lòng thêm loại sách)</p>
+                            <a href="~/admin/Category/addCategory" class="btn-outline-light btn btn-primary">Thêm danh mục sách</a>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputText3" class="col-form-label">Giới thiệu</label>
+                            <textarea id="inputText3" style="resize: none" rows="8" class="form-control"
+                                name="Introduction" required>@item.GetType().GetProperty("Introduction").GetValue(item, null)</textarea>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputText3" class="col-form-label">Mô tả chi tiết</label>
+                            <textarea id="inputText3" style="resize: none" rows="8" class="form-control"
+                                name="Description" required>@item.GetType().GetProperty("Description").GetValue(item, null)</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputText3" class="col-form-label">Đơn giá</label>
+                            <input id="inputText3" type="text" class="form-control" name="PriceUnit" required value=@item.GetType().GetProperty("PriceUnit").GetValue(item, null)>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputText3" class="col-form-label">Khuyến mãi (x,x)</label>
+                            <input id="inputText3" type="text" class="form-control" name="Sale" required value=@item.GetType().GetProperty("Sale").GetValue(item, null) />
+                        </div>
+
+                        @*<div class="form-group">
+                                <label for="inputText3" class="col-form-label">Price Sale</label>
+                                <input id="inputText3" type="text" class="form-control" name="Pricesale" required>
+                            </div>*@
+
+                        <div class="form-group">
+                            <label for="inputText3" class="col-form-label">Số lượng còn</label>
+                            <input id="inputText3" type="text" class="form-control" name="Quantity" required value=@item.GetType().GetProperty("Quantity").GetValue(item, null)>
+                        </div>
+
+                        @*<div class="form-group">
+                                <label for="inputText3" class="col-form-label">Quantity Buy</label>
+                                <input id="inputText3" type="text" class="form-control" name="QuantityBuy" required value=@Model.QuantityBuy />
+                            </div>*@
+
+                        @*<div class="form-group">
+                                <label for="inputText3" class="col-form-label">Ảnh của sản phẩm</label>
+                                <input id="inputText3" type="file" class="form-control" name="Img" required value=@Model.Img >
+                            </div>*@
+
+                        <div class="form-group">
+                            <label for="inputText3" class="col-form-label">Trạng thái</label>
+                            <select class="custom-select form-control" name="BookStatus" required value="">
+                                @if (@item.GetType().GetProperty("BookStatus").GetValue(item, null).ToString() == "0")
+                                {
+                                    <option selected value="@item.GetType().GetProperty("BookStatus").GetValue(item, null)">Đang kinh doanh</option>
+
+                                    <option value="1">Ngừng kinh doanh</option>
+}
+                                else
+                                {
+                                    <option selected value="@item.GetType().GetProperty("BookStatus").GetValue(item, null)">Ngừng kinh doanh</option>
+
+                                    <option  value="0">Đang kinh doanh</option>
+}
+
+                            </select>
+                        </div>
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                            <input class="btn btn-primary" type="submit" value="Cập nhật sách" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

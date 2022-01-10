@@ -1,0 +1,177 @@
+﻿@model IEnumerable<CartItem>
+@*@{var sl = 0;
+    double tong = 0.0;}*@
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["tittel"] = "Giỏ hàng";
+}
+@using Microsoft.AspNetCore.Http
+<div>
+    <div class="breadcrumbs position-relative pl-4 pr-4 pt-4 pb-4 lazy_bg loaded">
+        <div class="inner position-relative text-center">
+            <h1 class="cat-heading d-none d-md-block">Giỏ hàng</h1>
+        </div>
+    </div>
+
+
+    <div class="container  mt-3 mb-5">
+        <div class="row d-block col-xs-12 d-flex">
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-8 d-inline-block ">
+                @if (Model != null && Model.Count() > 0)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <div class="banner_collec row align-items-center pt-3 pb-0 mbs border mb-3 ux-card product p-0">
+                            <div class="col-lg-2 col-12 mb-1">
+                                <a class="modal-open border" href="#" title="Mew BS">
+                                    <img src="~/images/@item.Img" class="position-relative mr-3" style="width: 80%">
+                                </a>
+                            </div>
+
+                            <div class="col-lg-6 col-12">
+                                <a class="d-block item_bn_coll modal-open" title="Mew BS">
+                                    <div class="row">
+                                        <div class="col-12 d-flex m-0">
+                                            <p class="item-title clearfixrow">
+                                                <div class="mt-0">
+                                                    <h3 class="font-weight-bold" style="font-size:20px;">@item.BookName</h3>
+                                                    <span class="d-block small font-weight-bold"></span>
+                                                    <span class="price ml-auto text-left clearfix d-block" style="font-size:20px;">Giá: @item.PriceSale.ToString("0,0 đ")</span>
+                                                    <input data-bookid="@item.BookID" data-quantity="@item.Quantity" id="cartItem"
+                                                           type="number" maxlength="2" name="quantity" min="1" value="@item.Quantity" class="cartItem form-control m-0 border rounded" style="width:80%">
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-3 col-12 ">
+                                <a class="d-block modal-open p-1" href="#">
+                                    <span class="price ml-auto text-left clearfix d-block mb-1" style="font-size:20px;">
+                                        Tổng: @item.TotalMoney.ToString("0,0 đ")
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="col-lg-1 col-12 ">
+                                <div class="m-2" style="float:right;">
+                                    <button style="float:right" ; data-bookid="@item.BookID" class="removecart btn d-flex justify-content-center flex-row align-items-center rounded mt-1 pt-2 pb-2 product-action_buy js-addToCart sitdown modal-open">
+                                        <span style="color:white;"> Xóa</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+
+                    <h2>Chưa có hàng trong giỏ</h2>
+                }
+            </div>
+
+            <div class="col-lg-3 col-md-0 col-sm-0 col-xs-4 d-inline-block summary">
+                <dl class="total mb-2 p-3 align-items-center clearfix flex-wrap justify-content-end rounded">
+                    <dt class="items-center font-weight-bold roun">Tổng tiền</dt>
+                    <p class="cart__summary_total fs-3 font-weight-bold ml-auto mb-0">@Model.Sum(x => x.TotalMoney).ToString("0,0 đ")</p>
+                </dl>
+                @if (User.Identity.IsAuthenticated && @Context.Session.GetString("GioHang") != null)
+                {
+
+                    <button type="submit" class="btn d-flex w-100 justify-content-center flex-row align-items-center rounded pt-2 pb-2 product-action_buy js-addToCart sitdown modal-open text-uppercase font-weight-bold">
+                        <a href="~/CheckOut" style="color:white;">Tiến hành đặt hàng</a>
+
+                    </button>
+                    <button type="submit" class="btn d-flex w-100 justify-content-center flex-row align-items-center rounded pt-2 pb-2 product-action_buy js-addToCart sitdown modal-open text-uppercase font-weight-bold">
+                        <a href="/Home" style="color:white;">Tiếp tục mua hàng</a>
+                    </button>
+
+
+                }
+
+                else
+                {
+                    <button type="submit" class="btn d-flex w-100 justify-content-center flex-row align-items-center rounded pt-2 pb-2 product-action_buy js-addToCart sitdown modal-open text-uppercase font-weight-bold">
+                        <a href="~/Accounts/Login" style="color:white;">Tiến hành đặt hàng</a>
+
+                    </button>
+
+                    <button type="submit" class="btn d-flex w-100 justify-content-center flex-row align-items-center
+                                        rounded pt-2 pb-2 product-action_buy js-addToCart sitdown modal-open text-uppercase font-weight-bold">
+                        <a href="/Home" style="color:white;">Tiếp tục mua hàng</a>
+                    </button>
+
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+    }
+
+</div>
+
+@section Scripts{
+    <script>
+
+
+        $(function () {
+            $(".removecart").click(function () {
+               
+                var Bookid = $(this).attr("data-bookid");
+                $.ajax({
+                    url: 'api/cart/remove',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        BookID: Bookid
+                    },
+                    success: function (response) {
+                        //loadHearCart();
+                        if (response.success) {
+                            location.reload();
+                            window.location = "/Cart";
+                        }
+                    },
+                    error: function (error) {
+                        alert(error.responseText);
+                    }
+                })
+            })
+            //$(".cartItem").change(function () {
+            //    alert("+-");
+            //    var Bookid = $(this).attr("data-bookid");
+            //    var NewQuantity = $(this).val();
+            //    alert(NewQuantity*2);
+            //    alert(Bookid);
+            //    $.ajax({
+            //        url: 'api/cart/update',
+            //        type: "POST",
+            //        dataType: "JSON",
+            //        data: {
+            //            BookID: Bookid,
+            //            Quantity = NewQuantity
+            //        },
+            //        success: function (result) {
+            //            //loadHearCart();
+            //            if (result.success) {
+            //                //location.reload();
+            //                window.location = "/Cart";
+            //            }
+
+            //        },
+            //        error: function (error) {
+            //            alert(error.responseText);
+            //        }
+            //    })
+            //})
+        })
+
+
+    </script>
+}
+
+
+

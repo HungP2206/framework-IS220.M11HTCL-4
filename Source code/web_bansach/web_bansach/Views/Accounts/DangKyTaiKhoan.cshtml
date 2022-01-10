@@ -1,0 +1,53 @@
+﻿@model web_bansach.ModelView.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Đăng ký tài khoản";
+    Layout = "~/Views/Shared/login_layout.cshtml";
+}
+
+<body>
+    <section class="login-layout d-flex align-items-center justify-content-center p-2">
+        <div class="container ">
+            <section class="Login register-layout d-flex justify-content-center my-5 form-group col-12">
+                <div class="registration border1 border2 box_log ">
+                    <div class="header-form">
+                        <h2>Đăng ký tài khoản</h2>
+                    </div>
+                    <form asp-action="DangKyTaiKhoan" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger  text-center"></div>
+
+                        <input asp-for="CustomerName" type="text" class="info-regis border2" placeholder="Họ và tên của bạn" />
+                        <span asp-validation-for="CustomerName" class="text-dange  align-items-center"></span>
+
+                        <input asp-for="UserName" name="UserName" type="text" class="info-regis border2" placeholder="Tên đăng nhập" />
+                        <span asp-validation-for="UserName" class="text-danger  text-center"></span>
+
+                        <input asp-for="Password" type="password" class="info-regis border2" placeholder="Mật khẩu" />
+                        <span asp-validation-for="Password" class="text-danger  align-items-center"></span>
+
+                        <input asp-for="PasswordConfirm" type="password" class="info-regis border2"  placeholder="Nhập lại mật khẩu" />
+                        <span asp-validation-for="PasswordConfirm" class="text-danger align-items-centerr"></span>
+
+                        <input asp-for="Email"  name="Email" type="email" class="info-regis border2" placeholder="Email"  />
+                        <span asp-validation-for="Email" class="text-danger text-center"></span>
+
+                        <input asp-for="PhoneNumber" type="tel" name="PhoneNumber" class="info-regis border2" placeholder="Số điện thoại" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger text-center"></span>
+
+                        <input type="submit" class="info-regis border2 submit" name="dangky" value="Đăng ký" />
+
+                        <div class="log-in">
+                            <div>
+                                <p class="header-login">Bạn đã có tài khoản ?<br></p>
+                                <a href="~/Accounts/Login" class="info-login border2 home sublogin">Đăng nhập</a>
+                            </div>
+                            <a href="~/Home" class="info-login border2 home">Về trang chủ</a>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </section>
+</body>
+
+

@@ -1,0 +1,15 @@
+
+    @if (@ViewData["kq"].ToString() == "1")
+    {
+    <script>alert("Thêm tác giả thành công"); window.location.href = '@Url.Content("allAuthor")';</script>
+   
+    }
+    else
+    {
+    <script>alert("Thêm tác giả thất bại");window.location.href = '@Url.Content("allAuthor")';</script>
+    
+    }
+
+
+
+

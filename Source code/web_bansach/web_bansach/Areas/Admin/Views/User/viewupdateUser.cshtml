@@ -1,0 +1,95 @@
+﻿
+@model web_bansach.Areas.Admin.Models.UserModel
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="section-block" id="basicform">
+            <h3 class="section-title">Sửa danh mục nhân viên</h3>
+            <!-- <p>Use custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.</p> -->
+        </div>
+        <div class="card">
+            <h5 class="card-header">Danh mục nhân viên</h5>
+
+            <div class="card-body">
+                <form method="post" action="updateUser">
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Mã nhân viên</label>
+                        <input id="inputText3" readonly type="text" class="form-control" name="UserID" value="@Model.UserID">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Tên nhân viên</label>
+                        <input id="inputText3" type="text" class="form-control" name="EmployeeName" value="@Model.EmployeeName">
+                    </div>
+
+                    @*<div class="form-group">
+                        <label for="inputText3" class="col-form-label">Tên tài khoản</label>
+                        <input id="inputText3" type="text" class="form-control" name="UserName" value="@Model.UserName">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Mật khẩu</label>
+                        <input id="inputText3" type="text" class="form-control" name="Password" value="@Model.Password">
+                    </div>*@
+
+                    @*<div class="form-group">
+            <label for="inputText3" class="col-form-label">Role</label>
+            <input id="inputText3" type="text" class="form-control" name="role" value="{{$value->Role}}">
+        </div>*@
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Giới tính</label>
+                        <select class="custom-select" name="Gender">
+                            @if (@Model.Gender == 0)
+                            {
+                                <option selected value="@Model.Gender">Nam</option>
+                                <option value="1">Nữ</option>
+                            }
+                            else
+                            {
+                                <option selected value="@Model.Gender">Nữ</option>
+                                <option value="0">Nam</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">SĐT</label>
+                        <input id="inputText3" type="tel" class="form-control" name="Phone" value="@Model.Phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Email</label>
+                        <input id="inputText3" type="Email" class="form-control" name="Email" value="@Model.Email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Địa chỉ</label>
+                        <input id="inputText3" type="text" class="form-control" name="Address" value="@Model.Address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Trạng thái</label>
+                        <select class="custom-select" class="form-control" name="UserStatus">
+                            @if (@Model.UserStatus == 0)
+                            {
+                                <option selected value="@Model.UserStatus">Còn làm</option>
+                                <option value="1">Ngừng kinh doanh</option>
+                            }
+                            else
+                            {
+                                <option selected value="@Model.UserStatus">Đã nghỉ</option>
+                                <option value="0">Đang kinh doanh</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <button class="btn btn-primary" type="submit">Cập nhật nhân viên</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

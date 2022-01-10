@@ -1,0 +1,49 @@
+﻿
+
+@model web_bansach.Areas.Admin.Models.ProducerModel
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="section-block" id="basicform">
+            <h3 class="section-title">Sửa danh mục nhà cung cấp</h3>
+            <!-- <p>Use custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.</p> -->
+        </div>
+        <div class="card">
+            <h5 class="card-header">Danh mục nhà cung cấp</h5>
+            <div class="card-body">
+                <form method="post" action="updateProducer">
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Mã nhà cung cấp</label>
+                        <input id="inputText3" type="text" class="form-control" readonly="readonly" value=@Model.ProducerID name="ProducerID">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Tên nhà cung cấp</label>
+                        <input id="inputText3" type="text" class="form-control" name="ProducerName" value="@Model.ProducerName">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Trạng thái</label>
+                        <select class="custom-select" class="form-control" name="ProducerStatus">
+                            @if (@Model.ProducerStatus == 0)
+                            {
+                                <option selected value="@Model.ProducerStatus">Đang cung cấp</option>
+                                <option value="1">Ngừng cung cấp</option>
+                            }
+                            else
+                            {
+                                <option selected value="@Model.ProducerStatus">Ngừng cung cấp</option>
+                                <option value="0">Đang cung cấp</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <button class="btn btn-primary" type="submit">Cập nhật danh mục</button>
+                    </div>
+
+                </form>
+                
+            </div>
+
+        </div>
+    </div>
+</div>

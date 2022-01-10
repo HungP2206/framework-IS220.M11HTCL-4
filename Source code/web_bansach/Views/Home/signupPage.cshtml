@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/login_layout.cshtml";
+}
+
+<body>
+    <section class="login-layout d-flex align-items-center justify-content-center p-2">
+        <div class="container ">
+            <section class="Login register-layout d-flex justify-content-center my-5 form-group col-12">
+                <div class="registration border1 border2 box_log ">
+                    <div class="header-form">
+                        <h2>Đăng ký tài khoản</h2>
+                    </div>
+                    <form action="signup" class="sub-registration col-11" method="post" autocomplete="off">
+                   
+                        <input type="text" class="info-regis border2" name="username" placeholder="Tên đăng nhập"><br>
+                        <input type="password" class="info-regis border2" name="password" placeholder="Mật khẩu"><br>
+                        <input type="password" class="info-regis border2" name="repassword" placeholder="Xác nhận mật khẩu"><br>
+                        <input type="text" class="info-regis border2" name="email" placeholder="Email"><br>
+                        <input type="text" class="info-regis border2" name="customername" placeholder="Tên của bạn"><br>
+                        <input type="submit" class="info-regis border2 submit" name="dangky" value="Đăng ký">
+                        <div class="log-in">
+                            <div>
+                                <p class="header-login">Bạn đã có tài khoản ?<br></p>
+                                <a href="~/Home/loginPage" class="info-login border2 home sublogin">Đăng nhập</a>
+                            </div>
+                            <a href="~/Home" class="info-login border2 home">Về trang chủ</a>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </section>
+</body>
+
+

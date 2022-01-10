@@ -1,0 +1,15 @@
+
+    @if (@ViewData["kq"].ToString() == "1")
+    {
+    <script>alert("Thêm nhân viên thành công");window.location.href = '@Url.Content("allUser")';</script>
+   
+    }
+    else
+    {
+    <script>alert("Thêm nhân viên thất bại");window.location.href = '@Url.Content("allUser")';</script>
+    
+    }
+
+
+
+

@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="section-block" id="basicform">
+            <h3 class="section-title">THÊM SÁCH</h3>
+            <!-- <p>Use custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.</p> -->
+        </div>
+        <div class="card">
+            @*<h5 class="card-header">Danh mục sách</h5>*@
+            <div class="card-body">
+                <form method="post" action="InsertBookcontroller">
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Tên sách</label>
+                        <input id="inputText3" type="text" class="form-control" name="BookName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Tên tác giả</label>
+                        <select class="custom-select form-control" name="AuthorID" required
+                                asp-items="@(new SelectList(ViewBag.ListofAuthor,"AuthorID", "AuthorName"))"></select>
+                        <p class="note">(Nếu chưa có tác giả trong danh mục vui lòng thêm tác giả)</p>
+                        <a href="~/admin/Author/addAuthor" class="btn-outline-light btn btn-primary">Thêm tác giả</a>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Tên nhà cung cấp</label>
+                        <select class="custom-select form-control" name="ProducerID" required
+                                asp-items="@(new SelectList(ViewBag.ListofProducer,"ProducerID", "ProducerName"))"></select>
+                        <p class="note">(Nếu chưa có nhà cung cấp trong danh mục vui lòng thêm nhà cung cấp)</p>
+                        <a href="~/admin/Producer/addProducer" class="btn-outline-light btn btn-primary">Thêm nhà cung cấp</a>
+                    </div>
+
+                    @*<div class="form-group">
+                        <label class="col-form-label">Customer</label>
+                        <select class="custom-select form-control" name="ProducerID" required
+                                asp-items="@(new SelectList(ViewBag.ListofCus,"CustomerID", "CustomerName"))"></select>
+                        <p class="note">(Nếu chưa có nhà cung cấp trong danh mục vui lòng thêm nhà cung cấp)</p>
+                        <a href="~/admin/Producer/addProducer" class="btn-outline-light btn btn-primary">Thêm nhà cung cấp</a>
+                    </div>*@
+
+                    <div class="form-group">
+                        <div>
+                            <label>Tên thể loại sách</label>
+                            <select class="custom-select form-control" name="CategoryID" required
+                                    asp-items="@(new SelectList(ViewBag.ListofCategory,"CategoryID", "CategoryName"))"></select>
+                        </div>
+                        <p class="note">(Nếu chưa có loại sách trong danh mục vui lòng thêm loại sách)</p>
+                        <a href="~/admin/Category/addCategory" class="btn-outline-light btn btn-primary">Thêm thể loại sách</a>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Giới thiệu</label>
+                        <textarea style="resize: none" rows="4" id="inputText3" class="form-control" name="Introduction" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Mô tả chi tiết</label>
+                        <textarea id="inputText3" style="resize: none" rows="8" class="form-control" name="Description" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Đơn giá</label>
+                        <input id="inputText3" type="text" class="form-control" name="Priceunit" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Khuyến mãi (x,x)</label>
+                        <input id="inputText3" type="text" class="form-control" name="Sale" required />
+                    </div>
+
+                    @*<div class="form-group">
+            <label for="inputText3" class="col-form-label">Price Sale</label>
+            <input id="inputText3" type="text" class="form-control" name="Pricesale" required>
+        </div>*@
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Số lượng</label>
+                        <input id="inputText3" type="text" class="form-control" name="Quantity" required>
+                    </div>
+
+                    @*<div class="form-group">
+            <label for="inputText3" class="col-form-label">Quantity Buy</label>
+            <input id="inputText3" type="text" class="form-control" name="QuantityBuy">
+        </div>*@
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Ảnh của sản phẩm</label>
+                        <input id="inputText3" type="file" class="form-control" name="Img" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Trạng thái</label>
+                        <select class="custom-select form-control" name="BookStatus" required>
+                            <option selected value="0">Đang kinh doanh</option>
+                            <option value="1">Ngừng kinh doanh</option>
+                        </select>
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <button class="btn btn-primary" type="submit">Thêm sách</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

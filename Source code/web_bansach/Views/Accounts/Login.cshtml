@@ -1,0 +1,44 @@
+﻿@model web_bansach.ModelView.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/login_layout.cshtml";
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js%22%3E" > </script> 
+<div class="login-layout d-flex align-items-center justify-content-center p-2">
+    <div class="container ">
+        <section class="Login register-layout d-flex justify-content-center my-5 form-group col-12">
+            <div class="registration border1 border2 box_log ">
+                <div class="header-form">
+                    <h2>Đăng nhập</h2>
+                </div>
+
+                <form asp-action="Login" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                       
+                        <input asp-for="UserName"  class="info-login info-login border2" placeholder="Tên tài khoản" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        
+                        <input asp-for="Password" type="password" class="info-login border2 "  placeholder="Mật khẩu" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <input type="submit" class="info-login border2 btn-submit" name="dangnhap" value="Đăng nhập"><br>
+                    <div class="sign-up">
+                        <div>
+                            <p class="header-signup ">Bạn chưa có tài khoản ?<br></p>
+                            <a href="~/Accounts/DangKyTaiKhoan" class="info-login border2 home subsignup">Đăng ký</a>
+                        </div>
+                        <a href="~/Home" class="info-login border2 home">Về trang chủ</a>
+                    </div>
+                </form>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+

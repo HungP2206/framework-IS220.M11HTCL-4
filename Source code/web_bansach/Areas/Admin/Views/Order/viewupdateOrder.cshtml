@@ -1,0 +1,43 @@
+﻿@model web_bansach.Areas.Admin.Models.OrderModel
+
+
+
+
+
+<div class="card-body">
+    <form action="updateOrder" method="post">
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Mã đơn hàng</label>
+            <input id="inputText3" type="text" class="form-control" readonly="readonly" value=@Model.OrderID name="OrderID">
+        </div>
+      
+        <div class="form-group">
+            <label for="inputText3" class="col-form-label">Trạng thái</label>
+            <select class="custom-select" name="OrderStatus">
+                @if (@Model.OrderStatus == 0)
+                {
+                    <option selected value="@Model.OrderStatus">Mới</option>
+                    <option value="1">Đang giao</option>
+                    <option value="2">Đã hoàn thành</option>
+                }
+                else if (@Model.OrderStatus == 1)
+                {
+                    <option selected value="@Model.OrderStatus">Đang giao</option>
+                    <option selected value="0">Mới</option>
+                    <option value="2">Đã hoàn thành</option>
+                }
+                else
+                {
+                    <option selected value="2">Đã hoàn thành</option>
+                    <option selected value="0">Mới</option>
+                    <option value="1">Đang giao</option>
+                }
+            </select>
+        </div>
+      
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+            <button class="btn btn-primary" type="submit">Cập nhật đơn hàng</button>
+        </div>
+    </form>
+
+</div>

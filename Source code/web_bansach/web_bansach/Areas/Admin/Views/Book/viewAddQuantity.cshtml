@@ -1,0 +1,50 @@
+﻿@model web_bansach.Areas.Admin.Models.BookModel
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+        <div class="section-block" id="basicform">
+            <h3 class="section-title">Thêm số lượng sách</h3>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <form method="post" action="addQuantity">
+
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Mã sách</label>
+                        <input id="inputText3" type="text" class="form-control" readonly="readonly" value=@Model.BookID name="BookID">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Tên sách</label>
+                        <input readonly="readonly" id="inputText3" type="text" class="form-control" name="BookName" value="@Model.BookName">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Số lượng còn lại</label>
+                        @if(@Model.Quantity > 0)
+                        {
+                        <input readonly="readonly" id="inputText3" type="text" class="form-control" name="sl_old" value="@Model.Quantity">
+                        } else
+                        {
+                        <input readonly="readonly" id="inputText3" type="text" class="form-control" name="sl_old" value="Hết hàng">
+                        }
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Nhập số lượng cần thay đổi </label> <p style="font-style:italic">(Ví dụ nếu muốn tăng 1 thì nhập 1 ; nếu muốn giảm 2 thì nhập -2)</p>
+                        <input type="number" class="form-control" name="sl_add">
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <button class="btn btn-primary" type="submit">Xác nhận</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

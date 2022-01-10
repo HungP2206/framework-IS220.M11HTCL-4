@@ -1,0 +1,11 @@
+
+@if (@ViewData["kq"].ToString() == "1")
+{
+    <script>alert("Thêm sách thành công"); window.location.href = '@Url.Content("allBook")';</script>
+
+}
+else
+{
+    <script>alert("Thêm sách thất bại");window.location.href = '@Url.Content("allBook")';</script>
+
+}

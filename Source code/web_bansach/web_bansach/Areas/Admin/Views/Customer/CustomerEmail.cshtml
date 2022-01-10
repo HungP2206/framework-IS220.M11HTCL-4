@@ -1,0 +1,37 @@
+﻿@model web_bansach.Areas.Admin.Models.MailModel
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2 style="color:green" >@ViewBag.Message</h2>
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="section-block" id="basicform">
+            <h3 class="section-title">Mail thông báo</h3>
+            <!-- <p>Use custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.</p> -->
+        </div>
+        <div class="card">
+            <div class="card-body">
+                @using (Html.BeginForm("CustomerEmail", "Customer", FormMethod.Post, new { enctype = "mutipart/form-data" }))
+                {
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Title</label><br />
+                        @*<input id="inputText3" type="text" class="form-control" name="title"></input>*@
+                        @Html.TextBoxFor(model => model.Subject, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText3" class="col-form-label">Description</label><br />
+                        @*<textarea id="inputText3" style="resize: none" rows="8" class="form-control" name="book_des"></textarea>*@
+                        @Html.TextAreaFor(model => model.Body, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <button class="btn btn-primary" type="submit">Gửi</button>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
